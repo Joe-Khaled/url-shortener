@@ -9,11 +9,11 @@ connectToDb((err)=>{
         db=getDb()
     }
 })
-router.get('/url', async (req, res) => {
+router.get('/', async (req, res) => {
     try {
-        const urls = await db.collection('urls').find().toArray(); // Convert the cursor to an array
-        console.log(urls); // Add a log to see the data in the console
-        res.render('../views/index.ejs', { urls: urls }); // Ensure 'urls' is passed as an object
+        const urls = await db.collection('urls').find().toArray();
+        console.log(urls); 
+        res.render('../views/index.ejs', { urls: urls });
     } catch (err) {
         console.error("Error fetching URLs from the database: ", err);
         res.status(500).send("Internal Server Error");
